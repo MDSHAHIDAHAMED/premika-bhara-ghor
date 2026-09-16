@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্রেমিক ভাড়া ঘর — নিছক মজার জন্য কাল্পনিক প্ল্যাটফর্ম</title>
+  <meta name="description" content="বিয়েবাড়ি, আড্ডা কিংবা পরিবারের অনুষ্ঠান — সঙ্গী লাগবে? প্রেমিক ভাড়া ঘর থেকে মজার ছলে আপনার পছন্দের কাল্পনিক প্রেমিক বুক করুন!">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Hind Siliguri & Noto Sans Bengali -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN for satirical booking celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FAF7EE',
+            'cream-alt': '#F4EFE2',
+            earth: '#2B2118',
+            'earth-muted': '#5F5245',
+            forest: '#2D5A43',
+            terracotta: '#9E3B2B',
+            'terracotta-dark': '#822F22',
+            gold: '#D4A017'
+          },
+          fontFamily: {
+            bengali: ['"Hind Siliguri"', '"Noto Sans Bengali"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF7EE] text-[#2B2118] font-bengali min-h-screen flex flex-col antialiased selection:bg-[#9E3B2B] selection:text-white">
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="sticky top-0 z-40 bg-[#2D5A43] text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- Logo & Brand -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 rounded-full bg-[#E5A93C] text-[#2D5A43] flex items-center justify-center font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+          প্র
+        </div>
+        <span class="text-xl sm:text-2xl font-bold tracking-tight">প্রেমিক ভাড়া ঘর</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#E2ECE5]">
+        <a href="#why-us" class="hover:text-white transition-colors">কেন আমরা</a>
+        <a href="#packages" class="hover:text-white transition-colors">প্যাকেজ</a>
+        <a href="#profiles" class="hover:text-white transition-colors">মডেলগণ</a>
+        <a href="#reviews" class="hover:text-white transition-colors">রিভিউ</a>
+        <a href="#faq" class="hover:text-white transition-colors">প্রশ্নোত্তর</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden sm:flex items-center gap-3">
+        <button onclick="openBookingsViewerModal()" class="text-xs bg-[#1E3F2F] hover:bg-[#163023] text-[#FAF7EE] px-3 py-1.5 rounded-full font-medium transition-all flex items-center gap-1.5 border border-[#417559]" title="ডেটাবেজের বুকিং তালিকা দেখুন">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>বুকিং ডেটাবেজ</span>
+          <span id="nav-bookings-count" class="bg-[#2D5A43] px-1.5 py-0.2 rounded-full text-[10px] font-bold">১</span>
+        </button>
+        <button onclick="openBookingModal('', '')" class="text-xs sm:text-sm bg-[#9E3B2B] hover:bg-[#822F22] text-white px-4 py-2 rounded-full font-semibold transition-all shadow-sm flex items-center gap-1.5">
+          <span>এখনই বুক করুন</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-white hover:bg-[#234835] focus:outline-none" aria-label="মেনু খুলুন">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden bg-[#244A37] border-t border-[#37654E] px-4 py-3 space-y-2 text-sm font-medium">
+      <a href="#why-us" class="block py-2 text-[#E2ECE5] hover:text-white">কেন আমরা</a>
+      <a href="#packages" class="block py-2 text-[#E2ECE5] hover:text-white">প্যাকেজ</a>
+      <a href="#profiles" class="block py-2 text-[#E2ECE5] hover:text-white">মডেলগণ</a>
+      <a href="#reviews" class="block py-2 text-[#E2ECE5] hover:text-white">রিভিউ</a>
+      <a href="#faq" class="block py-2 text-[#E2ECE5] hover:text-white">প্রশ্নোত্তর</a>
+      <div class="pt-2 border-t border-[#37654E] flex flex-col gap-2">
+        <button onclick="openBookingsViewerModal()" class="w-full text-center bg-[#1E3F2F] text-white py-2 rounded-full font-semibold text-xs border border-[#417559]">
+          📋 বুকিং ডেটাবেজ দেখুন
+        </button>
+        <button onclick="openBookingModal('', '')" class="w-full text-center bg-[#9E3B2B] hover:bg-[#822F22] text-white py-2 rounded-full font-semibold">
+          এখনই বুক করুন
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Left Column: Copy & CTAs -->
+        <div class="lg:col-span-7 text-left space-y-6">
+          
+          <!-- Disclaimer Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF0ED] border border-[#E9C3BC] text-[#9E3B2B] text-xs sm:text-sm font-medium">
+            <span class="w-2 h-2 rounded-full bg-[#9E3B2B] flex-shrink-0"></span>
+            <span>সম্পূর্ণ কাল্পনিক ওয়েবসাইট — নিছক মজার জন্য</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#2B2118] leading-[1.2]">
+            প্রেমিক লাগবে? <br>
+            <span class="text-[#9E3B2B]">ভাড়ায় পাওয়া যায়!</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-base sm:text-lg text-[#5F5245] leading-relaxed max-w-xl">
+            বিয়েবাড়ি, ঈদের আড্ডা, পূজার মণ্ডপ কিংবা বন্ধুর প্যাঁচআপ — সব জায়গায় একজন বিশ্বস্ত সঙ্গী দরকার? এক কল দিন, বাকিটা আমাদের দায়িত্ব।
+          </p>
+
+          <!-- Dual CTA Buttons -->
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="#packages" class="btn-terracotta px-7 py-3 text-base font-bold shadow-md inline-flex items-center justify-center">
+              প্যাকেজ দেখুন
+            </a>
+            <button onclick="openBookingModal('', '')" class="btn-outline-dark px-7 py-3 text-base font-bold inline-flex items-center justify-center">
+              এখনই বুক করুন
+            </button>
+          </div>
+
+          <!-- Subtle Trust Footnote -->
+          <div class="pt-2 flex items-center gap-4 text-xs text-[#7E7063]">
+            <span class="flex items-center gap-1">✓ কোনো অতিরিক্ত ঝগড়া নেই</span>
+            <span class="flex items-center gap-1">✓ শতভাগ ভদ্র ও প্রশিক্ষণপ্রাপ্ত</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Floating Spotlight Card -->
+        <div class="lg:col-span-5">
+          <div id="spotlight-card-container">
+            <!-- Dynamically populated via renderSpotlightCard() -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ORNAMENTAL SAWTOOTH DIVIDER ==================== -->
+  <div class="w-full overflow-hidden leading-none py-1 bg-[#F4EFE2]/60 border-y border-[#EAE3D2]">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center text-xs text-[#7E7063] font-mono tracking-widest uppercase py-1 select-none">
+      <span>✦ ✦ ✦</span>
+      <span class="font-bengali text-xs tracking-normal font-medium text-[#5F5245]">শতভাগ নিরাপদ ও নিষ্কলুষ হাস্যরস • কোনো গোপন চার্জ নেই</span>
+      <span>✦ ✦ ✦</span>
+    </div>
+  </div>
+
+  <!-- ==================== FEATURES SECTION ==================== -->
+  <section id="why-us" class="py-16 md:py-24 bg-[#FAF7EE]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-12">
+        <span class="text-sm font-bold text-[#2D5A43] tracking-wide uppercase">কেন আমাদের প্রেমিক ভাড়া নেবেন</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2B2118] mt-1.5 mb-3">শুধু সঙ্গ নয়, পুরো অভিজ্ঞতা</h2>
+        <p class="text-base text-[#5F5245] max-w-2xl">আমাদের প্রতিটি প্রেমিক প্রশিক্ষণপ্রাপ্ত, দায়িত্বশীল এবং আপনার পরিবারকে সামলানোয় পারদর্শী।</p>
+      </div>
+
+      <!-- 3-Column Features Grid -->
+      <div id="features-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Dynamically rendered via renderFeatures() -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRICING / RECEIPT TABLE ==================== -->
+  <section id="packages" class="py-16 md:py-24 bg-[#F5EFE3]/50 border-t border-[#EAE3D2]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-10">
+        <span class="text-sm font-bold text-[#2D5A43] tracking-wide uppercase">ভাড়ার তালিকা</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2B2118] mt-1.5 mb-3">প্যাকেজ ও মূল্য তালিকা</h2>
+        <p class="text-base text-[#5F5245]">ঘণ্টাভিত্তিক থেকে সিজনাল স্পেশাল — সব বাজেটের জন্য প্যাকেজ আছে।</p>
+      </div>
+
+      <!-- Dashed Cut-line Coupon Style -->
+      <div class="dashed-cut-line mb-6 font-medium text-xs sm:text-sm">
+        <span>✂️ এই লাইন বরাবর কেটে সাথে আনুন</span>
+      </div>
+
+      <!-- Styled Receipt Table Container -->
+      <div class="receipt-table-container">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="receipt-header text-sm sm:text-base">
+                <th class="py-3.5 px-4 sm:px-6 font-bold">প্যাকেজ</th>
+                <th class="py-3.5 px-4 sm:px-6 font-bold">মেয়াদ</th>
+                <th class="py-3.5 px-4 sm:px-6 font-bold">মূল্য</th>
+                <th class="py-3.5 px-4 sm:px-6 font-bold hidden md:table-cell">যা থাকছে</th>
+                <th class="py-3.5 px-4 sm:px-6 font-bold text-right">পদক্ষেপ</th>
+              </tr>
+            </thead>
+            <tbody id="pricing-rows-container">
+              <!-- Dynamically populated via renderPricingTable() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footnote Disclaimer -->
+      <div class="mt-4 text-xs sm:text-sm text-[#7E7063] leading-relaxed">
+        * সব প্যাকেজে ২০% অগ্রিম বুকিং মানি প্রযোজ্য। দর-কষাকষি নিরুৎসাহিত করা হয় (যদিও আমরা জানি, আপনি চেষ্টা করবেন)।
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== AVAILABLE PROFILES GRID ==================== -->
+  <section id="profiles" class="py-16 md:py-24 bg-[#FAF7EE] border-t border-[#EAE3D2]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="text-sm font-bold text-[#2D5A43] tracking-wide uppercase">আমাদের প্রেমিকগণ</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2B2118] mt-1.5 mb-2">আজকের উপলব্ধ প্রোফাইল</h2>
+          <p class="text-base text-[#5F5245]">প্রতিটি প্রোফাইল যাচাইকৃত (কল্পনায়) এবং নির্দিষ্ট বৈশিষ্ট্যে বিশেষায়িত।</p>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="setProfileFilter('all')" data-filter="all" class="filter-pill-btn text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#2B2118] text-white border border-[#2B2118] transition-all">
+            সব প্রোফাইল
+          </button>
+          <button onclick="setProfileFilter('shy')" data-filter="shy" class="filter-pill-btn text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white text-[#5F5245] border border-[#E5DFD3] hover:border-[#2B2118] transition-all">
+            লাজুক
+          </button>
+          <button onclick="setProfileFilter('playful')" data-filter="playful" class="filter-pill-btn text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white text-[#5F5245] border border-[#E5DFD3] hover:border-[#2B2118] transition-all">
+            দুষ্টু-মিষ্টি
+          </button>
+          <button onclick="setProfileFilter('family')" data-filter="family" class="filter-pill-btn text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white text-[#5F5245] border border-[#E5DFD3] hover:border-[#2B2118] transition-all">
+            পারিবারিক
+          </button>
+          <button onclick="setProfileFilter('poet')" data-filter="poet" class="filter-pill-btn text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white text-[#5F5245] border border-[#E5DFD3] hover:border-[#2B2118] transition-all">
+            কবি ও সাহিত্যিক
+          </button>
+        </div>
+      </div>
+
+      <!-- Profiles Grid -->
+      <div id="profiles-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Dynamically rendered via renderProfiles() -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS SECTION ==================== -->
+  <section id="reviews" class="py-16 md:py-24 bg-[#F7F2E6]/60 border-t border-[#EAE3D2]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-12">
+        <span class="text-sm font-bold text-[#2D5A43] tracking-wide uppercase">গ্রাহকদের মতামত</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2B2118] mt-1.5 mb-3">কাল্পনিক গ্রাহকদের কাল্পনিক অভিজ্ঞতা</h2>
+      </div>
+
+      <!-- 3-Column Testimonial Cards -->
+      <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Dynamically rendered via renderTestimonials() -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FAQ SECTION ==================== -->
+  <section id="faq" class="py-16 md:py-24 bg-[#FAF7EE] border-t border-[#EAE3D2]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-10">
+        <span class="text-sm font-bold text-[#2D5A43] tracking-wide uppercase">জিজ্ঞাসা ও সমাধান</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#2B2118] mt-1.5 mb-3">প্রায়শই জিজ্ঞাসিত কাল্পনিক প্রশ্নাবলী</h2>
+        <p class="text-sm sm:text-base text-[#5F5245]">আপনার মনের সব দ্বিধা ও কৌতূহলের হাস্যরসাত্মক জবাব নিচে দেওয়া হলো।</p>
+      </div>
+
+      <!-- Accordion Container -->
+      <div id="faq-container" class="space-y-3">
+        <!-- Dynamically rendered via renderFAQs() -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CTA BANNER ==================== -->
+  <section class="py-12 bg-[#2D5A43] text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">সিঙ্গেল লাইফ নিয়ে আত্মীয়দের প্রশ্নে আর ভয় নয়!</h2>
+      <p class="text-sm sm:text-base text-[#D0E2D7] max-w-xl mx-auto">
+        শুধু একটি কাল্পনিক ফর্ম পূরণ করুন এবং বন্ধুদের সাথে এই লিঙ্ক শেয়ার করে তাদের চক্ষু চড়কগাছ করে দিন!
+      </p>
+      <div class="pt-2">
+        <button onclick="openBookingModal('', '')" class="bg-[#E5A93C] hover:bg-[#C99026] text-[#2B2118] font-bold px-8 py-3 rounded-full text-base shadow-lg transition-all transform hover:scale-105">
+          এখনই এক ক্লিকে বুক করুন ✦
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-[#241C15] text-[#C4B9A7] py-12 border-t border-[#3D3025]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-[#3D3025]">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-[#E5A93C] text-[#241C15] flex items-center justify-center font-bold text-base">
+            প্র
+          </div>
+          <span class="text-xl font-bold text-white tracking-tight">প্রেমিক ভাড়া ঘর</span>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 text-sm">
+          <a href="#why-us" class="hover:text-white transition-colors">কেন আমরা</a>
+          <a href="#packages" class="hover:text-white transition-colors">প্যাকেজ</a>
+          <a href="#profiles" class="hover:text-white transition-colors">মডেলগণ</a>
+          <a href="#reviews" class="hover:text-white transition-colors">রিভিউ</a>
+          <a href="#faq" class="hover:text-white transition-colors">প্রশ্নোত্তর</a>
+        </div>
+
+      </div>
+
+      <div class="pt-8 text-center space-y-3">
+        <p class="text-xs text-[#8E8070] max-w-2xl mx-auto leading-relaxed">
+          <strong class="text-[#D6CEBE]">আইনি ও রসাত্মক দাবিত্যাগ:</strong> এই সাইটের সমস্ত বিষয়বস্তু, প্রোফাইল, মূল্য তালিকা ও গ্রাহক প্রতিক্রিয়া শতভাগ কাল্পনিক এবং নিছক সাহিত্যিক ও প্যারোডি উদ্দেশ্যে নির্মিত। বাস্তবে কোনো প্রেমিক ভাড়া দেওয়া বা নেওয়া হয় না। সাইটটি দেখে হাসুন এবং সবাইকে হাসিখুশি রাখুন।
+        </p>
+        <p class="text-xs text-[#6A5F52]">
+          © ২০২৬ প্রেমিক ভাড়া ঘর (কাল্পনিক কর্পোরেশন) • সর্বস্বত্ব হাসিমুখের জন্য সংরক্ষিত
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== BOOKING MODAL ==================== -->
+  <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <!-- Backdrop -->
+    <div class="modal-overlay fixed inset-0" onclick="closeBookingModal()"></div>
+
+    <!-- Modal Content Window -->
+    <div class="modal-content relative z-10 w-full max-w-lg rounded-3xl p-6 sm:p-8 max-h-[92vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-[#7E7063] hover:text-[#2B2118] p-1.5 rounded-full hover:bg-[#EFE9DC] transition-colors" aria-label="বন্ধ করুন">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- VIEW 1: Booking Input Form -->
+      <div id="booking-form-view">
+        <div class="mb-6">
+          <div class="inline-block text-xs font-bold text-[#9E3B2B] bg-[#FDF1EE] px-2.5 py-0.5 rounded-full border border-[#ECCDBE] mb-2">
+            প্যারোডি বুকিং ফর্ম
+          </div>
+          <h3 class="text-2xl font-extrabold text-[#2B2118]">প্রেমিক ভাড়ার আবেদনপত্র</h3>
+          <p class="text-xs text-[#5F5245] mt-1">কয়েকটি সহজ তথ্যে নিশ্চিত করুন আপনার পছন্দের কাল্পনিক বুকিং।</p>
+        </div>
+
+        <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+          <!-- Name Field -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">আপনার নাম *</label>
+            <input type="text" id="modal-name-input" required placeholder="উদাঃ জান্নাতুল ফেরদৌস" 
+                   class="w-full px-4 py-2.5 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all">
+          </div>
+
+          <!-- Phone Field -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">মোবাইল নম্বর *</label>
+            <input type="tel" id="modal-phone-input" required placeholder="উদাঃ 017XXXXXXXX" 
+                   class="w-full px-4 py-2.5 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all">
+          </div>
+
+          <!-- Package Dropdown -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">প্যাকেজ নির্বাচন করুন</label>
+            <select id="modal-package-select" 
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <!-- Profile Dropdown -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">পছন্দের প্রেমিক</label>
+            <select id="modal-profile-select" 
+                    class="w-full px-4 py-2.5 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <!-- Date Picker -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">বুকিংয়ের তারিখ</label>
+            <input type="date" id="modal-date-input" 
+                   class="w-full px-4 py-2.5 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all">
+          </div>
+
+          <!-- Special Request / Note -->
+          <div>
+            <label class="block text-xs font-bold text-[#2B2118] uppercase mb-1">বিশেষ কোনো আবদার বা নির্দেশনা</label>
+            <textarea id="modal-note-input" rows="2" placeholder="উদাঃ ফুফুদের সামনে গম্ভীর ভাব নিয়ে থাকতে হবে..." 
+                      class="w-full px-4 py-2 rounded-xl border border-[#D6CEBE] bg-white text-[#2B2118] text-sm focus:outline-none focus:ring-2 focus:ring-[#9E3B2B] focus:border-transparent transition-all resize-none"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button type="submit" class="w-full btn-terracotta py-3 font-bold text-base shadow-lg flex items-center justify-center gap-2">
+              <span>বুকিং কনফার্ম করুন (মজার ছলে)</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <p class="text-center text-[11px] text-[#7E7063] mt-2">
+              ফর্ম সাবমিট করলে একটি মজার কাল্পনিক ভাউচার জেনারেট হবে!
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- VIEW 2: Satirical Voucher / Receipt Generator Result -->
+      <div id="booking-voucher-view" class="hidden">
+        <!-- Dynamically rendered on form submission -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== DATABASE BOOKINGS VIEWER MODAL ==================== -->
+  <div id="bookings-viewer-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <!-- Backdrop -->
+    <div class="modal-overlay fixed inset-0" onclick="closeBookingsViewerModal()"></div>
+
+    <!-- Modal Content Window -->
+    <div class="modal-content relative z-10 w-full max-w-4xl rounded-3xl p-6 sm:p-8 max-h-[92vh] flex flex-col">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-[#E5DFD3] flex-shrink-0">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#2D5A43] bg-[#EAF3EE] px-2.5 py-0.5 rounded-full border border-[#CFE4D7] mb-1">
+            <span class="w-2 h-2 rounded-full bg-[#2D5A43]"></span>
+            <span>লাইভ ডেটাবেজ স্টোরেজ</span>
+          </div>
+          <h3 class="text-2xl font-extrabold text-[#2B2118]">সংরক্ষিত বুকিং তালিকা</h3>
+          <p class="text-xs text-[#5F5245]">ডেটাবেজে সংরক্ষিত সমস্ত কাল্পনিক বুকিংয়ের বিবরণী।</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="fetchAndRenderBookingsTable()" class="p-2 rounded-full hover:bg-[#EFE9DC] text-[#2B2118] transition-colors" title="রিফ্রেশ করুন">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+          <button onclick="closeBookingsViewerModal()" class="p-2 rounded-full hover:bg-[#EFE9DC] text-[#7E7063] hover:text-[#2B2118] transition-colors" aria-label="বন্ধ করুন">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="py-3 flex items-center justify-between gap-4 flex-shrink-0">
+        <input type="text" id="booking-search-input" oninput="filterBookingsTable()" placeholder="নাম বা টোকেন নম্বর দিয়ে খুঁজুন..."
+               class="w-full max-w-xs px-3.5 py-2 rounded-xl border border-[#D6CEBE] bg-white text-xs text-[#2B2118] focus:outline-none focus:ring-2 focus:ring-[#2D5A43]">
+        <div id="booking-total-badge" class="text-xs font-bold text-[#5F5245] whitespace-nowrap">
+          মোট বুকিং: ০টি
+        </div>
+      </div>
+
+      <!-- Table Container (Scrollable) -->
+      <div class="overflow-x-auto overflow-y-auto flex-grow rounded-xl border border-[#E5DFD3] bg-white">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-[#2B2118] text-white sticky top-0">
+            <tr>
+              <th class="py-3 px-3 font-bold">টোকেন নং</th>
+              <th class="py-3 px-3 font-bold">গ্রাহকের নাম</th>
+              <th class="py-3 px-3 font-bold">মোবাইল</th>
+              <th class="py-3 px-3 font-bold">প্রেমিক</th>
+              <th class="py-3 px-3 font-bold">প্যাকেজ ও মূল্য</th>
+              <th class="py-3 px-3 font-bold">বুকিং তারিখ</th>
+              <th class="py-3 px-3 font-bold">বিশেষ আবদার</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-table-body" class="divide-y divide-[#F0EAE0]">
+            <!-- Dynamically populated via fetchAndRenderBookingsTable() -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer / Supabase Notice -->
+      <div class="pt-3 text-[11px] text-[#7E7063] flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-[#E5DFD3] mt-3 flex-shrink-0">
+        <span>✓ ব্যাকএন্ড এপিআই: <code>/api/bookings</code> (JSON / Supabase রেডি)</span>
+        <span class="text-[#2D5A43] font-semibold">Vercel & Netlify ডিপ্লয়মেন্ট সাপোর্টেড</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING TOAST NOTIFICATION ==================== -->
+  <div id="toast-notification" 
+       class="fixed bottom-6 right-6 z-50 bg-[#2B2118] text-white px-5 py-3 rounded-2xl shadow-2xl text-sm font-medium border border-[#4D3D30] transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none max-w-sm">
+    বিজ্ঞপ্তি
+  </div>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>

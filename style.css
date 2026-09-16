@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-cream: #FAF7EE;
+  --bg-cream-alt: #F4EFE2;
+  --card-bg: #FFFFFF;
+  --text-main: #2B2118;
+  --text-muted: #5F5245;
+  --text-light: #7E7063;
+  --border-color: #E5DFD3;
+  --border-dashed: #D6CEBE;
+  --olive-green: #2D5A43;
+  --olive-green-dark: #1E3F2F;
+  --olive-green-light: #E8F0EB;
+  --terracotta: #9E3B2B;
+  --terracotta-dark: #822F22;
+  --terracotta-light: #FDF1EE;
+  --gold-accent: #D4A017;
+  --gold-badge: #E3A330;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EFE9DC;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4B9A7;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terracotta);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Retro Paper Texture / Subtle Vignette */
+.paper-texture {
+  background-color: var(--bg-cream);
+  background-image: radial-gradient(#2b2118 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  opacity: 0.98;
+}
+
+/* Header Navbar */
+.bg-nav-green {
+  background-color: var(--olive-green);
+}
+
+/* Saw-tooth / Geometric Ethnic Border Divider */
+.sawtooth-divider {
+  height: 16px;
+  width: 100%;
+  background-color: transparent;
+  background-image: 
+    linear-gradient(45deg, #FAF7EE 25%, transparent 25%), 
+    linear-gradient(-45deg, #FAF7EE 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #FAF7EE 75%), 
+    linear-gradient(-45deg, transparent 75%, #FAF7EE 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  opacity: 0.75;
+}
+
+.pattern-band {
+  background-image: repeating-linear-gradient(45deg, rgba(45, 90, 67, 0.05) 0, rgba(45, 90, 67, 0.05) 10px, transparent 10px, transparent 20px);
+}
+
+/* Subtle Card styling */
+.retro-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(43, 33, 24, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.retro-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(43, 33, 24, 0.09);
+  border-color: #D3C9B8;
+}
+
+/* Buttons */
+.btn-terracotta {
+  background-color: var(--terracotta);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(158, 59, 43, 0.25);
+}
+
+.btn-terracotta:hover {
+  background-color: var(--terracotta-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(158, 59, 43, 0.35);
+}
+
+.btn-outline-dark {
+  background-color: #FAF7EE;
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--text-main);
+  color: #FAF7EE;
+  transform: translateY(-1px);
+}
+
+/* Dashed cut-lines */
+.dashed-cut-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #7E7063;
+  font-size: 14px;
+}
+
+.dashed-cut-line::before,
+.dashed-cut-line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 2px dashed #C8BFB0;
+}
+
+.dashed-cut-line::before {
+  margin-right: 12px;
+}
+
+.dashed-cut-line::after {
+  margin-left: 12px;
+}
+
+/* Receipt Table */
+.receipt-table-container {
+  background-color: #FAF6ED;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(43, 33, 24, 0.04);
+}
+
+.receipt-header {
+  background-color: var(--text-main);
+  color: #FFFFFF;
+}
+
+.receipt-row {
+  border-bottom: 1px dashed var(--border-dashed);
+  transition: background-color 0.2s ease;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+.receipt-row:hover {
+  background-color: #F3EBDD;
+}
+
+/* Testimonial card with terracotta left bar */
+.testimonial-card {
+  background-color: #FAF7EE;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--terracotta);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(43, 33, 24, 0.07);
+}
+
+/* Testimonial verified badge */
+.verified-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #D6CEBE;
+  border-radius: 6px;
+  background-color: #F2ECE0;
+  color: var(--text-muted);
+}
+
+/* Progress bar animation */
+.progress-bar-fill {
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Pulse animation for 'আজ ফ্রি আছে' tag */
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.pulse-dot {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+/* Modal Animations */
+.modal-overlay {
+  background-color: rgba(43, 33, 24, 0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background-color: #FAF7EE;
+  border: 2px solid #E5DFD3;
+  box-shadow: 0 20px 40px rgba(43, 33, 24, 0.25);
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Voucher / Receipt Print Style */
+.voucher-ticket {
+  background: #FFFDF8;
+  border: 2px dashed #9E3B2B;
+  border-radius: 16px;
+  position: relative;
+}
+
+.voucher-ticket::before,
+.voucher-ticket::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #FAF7EE;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.voucher-ticket::before {
+  left: -10px;
+}
+
+.voucher-ticket::after {
+  right: -10px;
+}
